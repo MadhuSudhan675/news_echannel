@@ -52,10 +52,18 @@ header nav ends here  */
   font-size: 15px;
 }
 /* body card session starts here */
+.body-cards-container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
 .card {
   height: 250px;
   width: 300px;
   padding: 5px;
+  margin: 10px;
+  background-color: rgb(254, 255, 239) !important;
   border: 3px solid rebeccapurple !important;
 }
 .card-heading {
