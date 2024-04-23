@@ -60,22 +60,57 @@ header nav ends here  */
 }
 
 .card {
-  height: 250px;
+  height: 450px;
   width: 300px;
-  padding: 5px;
-  margin: 10px;
-  background-color: rgb(230, 251, 249) !important;
-  border: 3px solid rebeccapurple !important;
+  padding: 10px;
+  margin: 20px auto;
+  background-color: rgb(224, 207, 207);
+  border: 2px solid rgb(169, 116, 223) !important;
+  border-radius: 10px;
+  box-sizing: border-box;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  transition: border-color 0.3s ease-in-out;
 }
+
+.card:hover {
+  border-color: red !important;
+  transform: translateY(-5px);
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
+}
+
 .card-heading {
-  font-size: 1em;
+  font-size: 1.5em;
   text-align: center;
   padding: 5px;
-  border-bottom: 1px solid;
+  border-bottom: 2px solid rebeccapurple;
+  margin-bottom: 5px;
 }
+
 .card-img {
-  height: 60%;
-  width: 90%;
+  /* width: 100%;
+  max-height: 80%;
+  object-fit: cover;
+  padding: 0px; */
+  height: auto;
+  width: auto;
+  overflow: auto;
+  border-color: 2px solid pink !important;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+/* 
+
+
+
+/* foooter starts here */
+
+.footer-section {
+  background-color: #0d2436;
+  margin-top: 10px;
+}
+.footer-section-address {
+  color: #959ead;
+  font-size: 14px;
 }
 
 @media screen and (max-width: 768px) {
