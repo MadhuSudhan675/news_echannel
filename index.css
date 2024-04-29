@@ -1,6 +1,10 @@
-* {
+html,
+body {
   margin: 0px;
   padding: 0px;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
 }
 /* 
   header nav starts here  */
@@ -64,14 +68,14 @@ a {
 .cards-container {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   flex-wrap: wrap;
   margin: 10px;
 }
 
 .card {
   height: 450px;
-  width: 280px;
+  width: 290px;
   padding: 10px;
   margin: 20px auto;
   background-color: rgb(224, 207, 207);
@@ -89,7 +93,7 @@ a {
 }
 
 .card-heading {
-  font-size: 1.5em;
+  font-size: 1.2em;
   text-align: center;
   padding: 5px;
   border-bottom: 2px solid rebeccapurple;
@@ -102,7 +106,7 @@ a {
     object-fit: cover;
     padding: 0px; */
   height: auto;
-  width: auto;
+  width: 100%;
   overflow: auto;
   border-color: 2px solid pink !important;
   border-radius: 10px;
