@@ -15,12 +15,15 @@ body {
   justify-content: space-between;
   align-items: center;
 }
-.header-nav-heading {
+
+.header-nav-heading-link {
+  text-decoration: none;
+  color: white !important;
   font-size: 15px;
   padding-right: 40px;
-  color: white;
 }
 
+/* nav bar starts here */
 .nav-logo {
   width: 200px;
   height: 45px;
@@ -55,13 +58,28 @@ a {
   border: 1px solid red;
 }
 
-/* 
-  header nav ends here  */
+/* header nav ends here  */
 
-.marquee-tag {
+/* marquee tag css starts here */
+.marquee-div {
   background-color: rgb(134, 45, 134);
   color: white;
   font-size: 15px;
+}
+.marquee-scrolling-text {
+  white-space: nowrap;
+  overflow: hidden;
+
+  animation: scrolling 30s linear infinite;
+}
+
+@keyframes scrolling {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }
 /* body card session starts here */
 
@@ -101,10 +119,6 @@ a {
 }
 
 .card-img {
-  /* width: 100%;
-    max-height: 80%;
-    object-fit: cover;
-    padding: 0px; */
   height: auto;
   width: 100%;
   overflow: auto;
@@ -112,11 +126,22 @@ a {
   border-radius: 10px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
-/* 
-  
-  
-  
-  /* foooter starts here */
+
+/* nav redirect body part code starts here */
+
+.ts-page-container,
+.ap-page-container,
+.mahabubnagar-page-container,
+.medak-page-container,
+.nalgonda-page-container,
+.nizamabad-page-container,
+.adilabad-page-container,
+.karimnagar-page-container,
+.warangal-page-container {
+  display: none;
+}
+
+/* foooter starts here */
 
 .footer-section {
   background-color: #0d2436;
