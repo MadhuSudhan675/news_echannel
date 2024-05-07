@@ -1,6 +1,14 @@
-var cardsBody = document.getElementById("body-main-container");
+// while clicking on nav anchor in small screen other anchor tags will collapse
+$(document).ready(function () {
+  // Close navbar when a navigation link is clicked
+  $(".navbar-nav a").on("click", function () {
+    $(".navbar-collapse").collapse("hide");
+  });
+});
 
 // all nav achor tags code written here only body part will become none and clicked part will be executed
+
+var cardsBody = document.getElementById("body-main-container");
 
 var TelanganaNavElement = document.getElementById("tsNavId");
 var TelanganaStatePage = document.getElementById("tsPage");
