@@ -50,6 +50,9 @@ function showContent(contentToShow) {
     AdilabadPage,
     KarimnagarPage,
     WarangalPage,
+
+    // home card links will hide while clicking on other nav or card
+    homeTsCardPage,
   ];
   navIdArray.forEach(function (content) {
     if (content !== contentToShow) {
@@ -83,3 +86,36 @@ addNavigationListener(WarangalNavElement, WarangalPage);
 //   // Your JavaScript code here
 //   // This will run after the DOM is fully loaded
 // });
+
+// home page cards will redirect to next page and remaining should be none
+// return to normal// var tsCardHome = document.getElementById("ts-card-home");
+// var homeTsCardPage = document.getElementById("home-ts-card-link");
+// addNavigationListener(tsCardHome, homeTsCardPage);
+
+// demo
+// Function to dynamically embed PDF into home-ts-card-link container
+function embedPDF(pdfUrl, container) {
+  if (container) {
+    container.innerHTML = `<iframe src="${pdfUrl}" width="100%" height="600px"></iframe>`;
+  }
+}
+
+// Event listener for card click redirect to pdf
+function addCardClickListener(cardElement, targetPage, pdfUrl) {
+  cardElement.addEventListener("click", function (event) {
+    event.preventDefault();
+    showContent(targetPage);
+    embedPDF(pdfUrl, targetPage);
+    targetPage.classList.add("home-ts-card-link");
+  });
+}
+
+// Example usage:
+// creating home card id elements
+var tsCardHome = document.getElementById("ts-card-home");
+var homeTsCardPage = document.getElementById("home-ts-card-link");
+// addNavigationListener(tsCardHome, homeTsCardPage);
+
+// calling home card next page with pdf
+var tsPdfUrl = "./newsPageWebp/pidikili 07-5-2024R[3].pdf"; // Replace with the URL of your PDF file
+addCardClickListener(tsCardHome, homeTsCardPage, tsPdfUrl);

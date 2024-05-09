@@ -10,3 +10,30 @@ $(document).ready(function () {
     }
   });
 });
+
+
+// Function to dynamically embed PDF into container
+function embedPDF(pdfUrl, containerId) {
+  var container = document.getElementById(containerId);
+  if (container) {
+    var iframe = document.createElement("iframe");
+    iframe.src = pdfUrl;
+    iframe.width = "100%";
+    iframe.height = "600px";
+    container.innerHTML = ""; // Clear existing content
+    container.appendChild(iframe);
+  }
+}
+
+// Event listener for card click
+function addCardClickListener(cardElement, pdfUrl) {
+  cardElement.addEventListener("click", function (event) {
+    event.preventDefault();
+    embedPDF(pdfUrl, "ts-card-paper-pdf"); // Replace "pdf-container" with the ID of your container
+  });
+}
+
+// Example usage:
+var tsCardHome = document.getElementById("ts-card-home");
+var pdfUrl = "./newsPageWebp/pidikili 07-5-2024R[3].pdf"; // Replace with the URL of your PDF file
+addCardClickListener(tsCardHome, pdfUrl);

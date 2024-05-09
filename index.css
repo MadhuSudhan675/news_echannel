@@ -40,7 +40,7 @@ body {
   background-color: black !important;
 }
 a {
-  color: black !important;
+  color: rgb(0, 0, 0) !important;
   font-weight: bold;
   padding: 0.2rem 0.5rem 0.2rem 0.5rem !important;
 }
@@ -152,6 +152,16 @@ a {
   font-weight: bold;
   text-align: left;
   color: rgb(167, 6, 57);
+}
+
+/* demo */
+.demo {
+  display: none;
+}
+.home-ts-card-link {
+  padding: 10px;
+  border: 2px solid rgb(255, 0, 0);
+  box-sizing: border-box;
 }
 
 /* foooter starts here */
