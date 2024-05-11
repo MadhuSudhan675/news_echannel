@@ -1,39 +1,294 @@
+// while clicking on nav anchor in small screen other anchor tags will collapse
 $(document).ready(function () {
-  // Smooth scrolling for anchor links
-  $('a[href^="#"]').on('click', function (event) {
-    var target = $(this.getAttribute('href'));
-    if (target.length) {
-      event.preventDefault();
-      $('html, body').animate({
-        scrollTop: target.offset().top
-      }, 1000);
-    }
+  // Close navbar when a navigation link is clicked
+  $(".navbar-nav a").on("click", function () {
+    $(".navbar-collapse").collapse("hide");
   });
 });
 
+// all nav achor tags code written here only body part will become none and clicked part will be executed
 
-// Function to dynamically embed PDF into container
-function embedPDF(pdfUrl, containerId) {
-  var container = document.getElementById(containerId);
-  if (container) {
-    var iframe = document.createElement("iframe");
-    iframe.src = pdfUrl;
-    iframe.width = "100%";
-    iframe.height = "600px";
-    container.innerHTML = ""; // Clear existing content
-    container.appendChild(iframe);
-  }
-}
+var cardsBody = document.getElementById("body-main-container");
 
-// Event listener for card click
-function addCardClickListener(cardElement, pdfUrl) {
-  cardElement.addEventListener("click", function (event) {
-    event.preventDefault();
-    embedPDF(pdfUrl, "ts-card-paper-pdf"); // Replace "pdf-container" with the ID of your container
+var TelanganaNavElement = document.getElementById("tsNavId");
+var TelanganaStatePage = document.getElementById("tsPage");
+
+var ApNavElement = document.getElementById("apNavId");
+var ApStatePage = document.getElementById("apPage");
+
+var MehabubnagarNavElement = document.getElementById("mehabubnagarNavId");
+var MahabubnagarPage = document.getElementById("mahabubnagarPage");
+
+var MedakNavElement = document.getElementById("medakNavId");
+var MedakPage = document.getElementById("medakPage");
+
+var NalgondaNavElement = document.getElementById("nalgondaNavId");
+var NalgondaPage = document.getElementById("nalgondaPage");
+
+var NizamabadNavElement = document.getElementById("nizamabadNavId");
+var NizamabadPage = document.getElementById("nizamabadPage");
+
+var AdilabadNavElement = document.getElementById("adilabadNavId");
+var AdilabadPage = document.getElementById("adilabadPage");
+
+var KarimnagarNavElement = document.getElementById("karimnagarNavId");
+var KarimnagarPage = document.getElementById("karimnagarPage");
+
+var WarangalNavElement = document.getElementById("warangalNavId");
+var WarangalPage = document.getElementById("warangalPage");
+
+// function for displaying only one nav achor body remaining none
+function showContent(contentToShow) {
+  var navIdArray = [
+    cardsBody,
+    TelanganaStatePage,
+    ApStatePage,
+    MahabubnagarPage,
+    MedakPage,
+    NalgondaPage,
+    NizamabadPage,
+    AdilabadPage,
+    KarimnagarPage,
+    WarangalPage,
+
+    // home card links will hide while clicking on other nav or card
+    // homeTsCardPage,
+  ];
+  navIdArray.forEach(function (content) {
+    if (content !== contentToShow) {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
   });
 }
 
+// function for onclick event on nav anchor tag
+function addNavigationListener(navElement, targetPage) {
+  navElement.addEventListener("click", function (event) {
+    event.preventDefault();
+    showContent(targetPage);
+  });
+}
+
+// Event listener for Selected anchor tag link
+addNavigationListener(TelanganaNavElement, TelanganaStatePage);
+addNavigationListener(ApNavElement, ApStatePage);
+addNavigationListener(MehabubnagarNavElement, MahabubnagarPage);
+addNavigationListener(MedakNavElement, MedakPage);
+addNavigationListener(NalgondaNavElement, NalgondaPage);
+addNavigationListener(NizamabadNavElement, NizamabadPage);
+addNavigationListener(AdilabadNavElement, AdilabadPage);
+addNavigationListener(KarimnagarNavElement, KarimnagarPage);
+addNavigationListener(WarangalNavElement, WarangalPage);
+
+// document.addEventListener("DOMContentLoaded", function () {
+//   // Your JavaScript code here
+//   // This will run after the DOM is fully loaded
+// });
+
+// home page cards will redirect to next page and remaining should be none
+// return to normal// var tsCardHome = document.getElementById("ts-card-home");
+// var homeTsCardPage = document.getElementById("home-ts-card-link");
+// addNavigationListener(tsCardHome, homeTsCardPage);
+
+// demo
+// Function to dynamically embed PDF into home-ts-card-link container
+// function embedPDF(pdfUrl, container) {
+//   if (container) {
+//     container.innerHTML = `<iframe src="${pdfUrl}" width="100%" height="600px"></iframe>`;
+//     container.classList.add("home-ts-card-link"); // Add class to the container
+//   }
+// }
+// function embedPDF(pdfUrl, container) {
+//   if (container) {
+//     container.innerHTML = `
+//       <object data="${pdfUrl}" type="application/pdf" width="100%" height="600px">
+//         <p>It appears you don't have a PDF plugin for this browser.
+//         No biggie... you can <a href="${pdfUrl}">click here to download the PDF file.</a></p>
+//       </object>
+//     `;
+//     container.classList.add("home-ts-card-link"); // Add class to the container
+//   }
+// }
+
+// function embedPDF(pdfUrl, container) {
+//   if (container) {
+//     // Create a canvas element to render the PDF
+//     const canvas = document.createElement("canvas");
+//     container.appendChild(canvas);
+
+//     // Asynchronously download PDF as an ArrayBuffer
+//     const loadingTask = pdfjsLib.getDocument(pdfUrl);
+//     loadingTask.promise
+//       .then((pdf) => {
+//         // Get the first page of the PDF
+//         pdf.getPage(1).then((page) => {
+//           const viewport = page.getViewport({ scale: 1 });
+//           const context = canvas.getContext("2d");
+//           canvas.height = viewport.height;
+//           canvas.width = viewport.width;
+
+//           // Render the PDF page on the canvas
+//           const renderTask = page.render({
+//             canvasContext: context,
+//             viewport: viewport,
+//           });
+//           renderTask.promise.then(() => {
+//             container.classList.add("home-ts-card-link"); // Add class to the container
+//           });
+//         });
+//       })
+//       .catch((error) => {
+//         console.error("Error loading PDF:", error);
+//       });
+//   }
+// }
+
+// function embedEpub(pdfUrl, container) {
+//   if (container) {
+//     // Create a canvas element to render the PDF
+//     const canvas = document.createElement("canvas");
+//     container.appendChild(canvas);
+
+//     // Asynchronously download PDF as an ArrayBuffer
+//     const loadingTask = pdfjsLib.getDocument(pdfUrl);
+//     loadingTask.promise
+//       .then((pdf) => {
+//         // Get the first page of the PDF
+//         pdf.getPage(1).then((page) => {
+//           const viewport = page.getViewport({ scale: 1 });
+//           const context = canvas.getContext("2d");
+
+//           // Function to resize canvas based on screen size
+//           function resizeCanvas() {
+//             const scaleFactor = window.devicePixelRatio || 1;
+//             const width = window.innerWidth * scaleFactor;
+//             const height = window.innerHeight * scaleFactor;
+
+//             canvas.width = width;
+//             canvas.height = height;
+//             canvas.style.width = window.innerWidth + "px";
+//             canvas.style.height = window.innerHeight + "px";
+
+//             // Render the PDF page on the canvas
+//             const renderTask = page.render({
+//               canvasContext: context,
+//               viewport: viewport,
+//             });
+//             renderTask.promise.then(() => {
+//               container.classList.add("home-ts-card-link"); // Add class to the container
+//             });
+//           }
+
+//           // Initial resize
+//           resizeCanvas();
+
+//           // Re-render on window resize
+//           window.addEventListener("resize", resizeCanvas);
+//         });
+//       })
+//       .catch((error) => {
+//         console.error("Error loading PDF:", error);
+//       });
+//   }
+// }
+
+// function embedEpub(tsEpubUrl, targetPage) {
+//   // Create an iframe element
+//   var iframe = document.createElement("iframe");
+
+//   // Set attributes for the iframe
+//   iframe.setAttribute("src", tsEpubUrl);
+//   iframe.setAttribute("width", "100%"); // Set width to 100% for responsiveness
+//   iframe.setAttribute("height", "100%"); // Set height to 100% for responsiveness
+//   iframe.setAttribute("frameborder", "0"); // Remove iframe border
+
+//   // Get the target page element where you want to embed the EPUB
+//   var targetPageElement = document.getElementById(targetPage);
+
+//   // Clear any existing content in the target page element
+//   targetPageElement.innerHTML = "";
+
+//   // Append the iframe to the target page element
+//   targetPageElement.appendChild(iframe);
+// }
+
+// Function to embed PDF dynamically and responsively
+// function embedPDF(pdfUrl, targetPage) {
+//   // Create an iframe element
+//   var iframe = document.createElement("iframe");
+
+//   // Set attributes for the iframe
+//   iframe.setAttribute("src", pdfUrl);
+//   iframe.setAttribute("width", "100%"); // Set width to 100% for responsiveness
+//   iframe.setAttribute("height", "100%"); // Set height to 100% for responsiveness
+//   iframe.setAttribute("frameborder", "0"); // Remove iframe border
+
+//   // Get the target page element where you want to embed the PDF
+//   var targetPageElement = document.getElementById(targetPage);
+
+//   // Clear any existing content in the target page element
+//   targetPageElement.innerHTML = "";
+
+//   // Append the iframe to the target page element
+//   targetPageElement.appendChild(iframe);
+// }
+
+
+// demo ends here
+
+
+// Event listener for card click to embed PDF
+function addCardClickListener(cardElement, targetPage, pdfUrl) {
+  cardElement.addEventListener("click", function (event) {
+    event.preventDefault(); // Prevent default action of link click
+    showContent(targetPage); // Show the target page
+    embedPDF(pdfUrl, targetPage); // Embed the PDF into the target page
+  });
+}
+
+// // Example usage:
+// // Assuming you have a card element with ID 'ts-card-home' and a target page with ID 'home-ts-card-link'
+// var tsCardHome = document.getElementById("ts-card-home");
+// var homeTsCardPage = "home-ts-card-link"; // ID of the target page
+// var pdfUrl = "./newsPageWebp/pidikili 07-5-2024R[3].pdf"; // Replace with the URL of your PDF file
+
+// // Add click listener to the card element
+// addCardClickListener(tsCardHome, homeTsCardPage, pdfUrl);
+
+
+// demo
+// Function to embed a PDF file
+function embedPDF(pdfUrl, targetPage) {
+  // Create an object element
+  var pdfObject = document.createElement('object');
+
+  // Set attributes for the object
+  pdfObject.setAttribute('data', pdfUrl);
+  pdfObject.setAttribute('type', 'application/pdf');
+  pdfObject.setAttribute('width', '100%'); // Set width to 100% for responsiveness
+  pdfObject.setAttribute('height', '100%'); // Set height to 100% for responsiveness
+
+  // Get the target page element where you want to embed the PDF
+  var targetPageElement = document.getElementById(targetPage);
+
+  // Clear any existing content in the target page element
+  targetPageElement.innerHTML = '';
+
+  // Append the object to the target page element
+  targetPageElement.appendChild(pdfObject);
+
+  // Show the target page
+  showContent(targetPage);
+}
+
 // Example usage:
-var tsCardHome = document.getElementById("ts-card-home");
-var pdfUrl = "./newsPageWebp/pidikili 07-5-2024R[3].pdf"; // Replace with the URL of your PDF file
-addCardClickListener(tsCardHome, pdfUrl);
+// Assuming you have a card element with ID 'ts-card-home' and a target page with ID 'home-ts-card-link'
+var tsCardHome = document.getElementById('ts-card-home');
+var homeTsCardPage = 'home-ts-card-link'; // ID of the target page
+var pdfUrl = './newsPageWebp/pidikili 07-5-2024R[2].pdf'; // Replace with the URL of your PDF file
+
+// Add click listener to the card element
+addCardClickListener(tsCardHome, homeTsCardPage, pdfUrl);
+

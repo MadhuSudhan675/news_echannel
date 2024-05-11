@@ -87,26 +87,53 @@ addNavigationListener(WarangalNavElement, WarangalPage);
 //   // This will run after the DOM is fully loaded
 // });
 
-// home page cards will redirect to next page and remaining should be none
-// return to normal// var tsCardHome = document.getElementById("ts-card-home");
-// var homeTsCardPage = document.getElementById("home-ts-card-link");
-// addNavigationListener(tsCardHome, homeTsCardPage);
-
 // demo
 // Function to dynamically embed PDF into home-ts-card-link container
 function embedPDF(pdfUrl, container) {
   if (container) {
-    container.innerHTML = `<iframe src="${pdfUrl}" width="100%" height="600px"></iframe>`;
+    // Asynchronously download PDF as an ArrayBuffer
+    const loadingTask = pdfjsLib.getDocument(pdfUrl);
+    loadingTask.promise
+      .then((pdf) => {
+        // Loop through each page of the PDF
+        for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++) {
+          // Create a canvas element for each page
+          const canvas = document.createElement("canvas");
+          container.appendChild(canvas);
+
+          // Get the page
+          pdf.getPage(pageNumber).then((page) => {
+            // Get the viewport of the page
+            const viewport = page.getViewport({ scale: 1 });
+            const context = canvas.getContext("2d");
+
+            // Set canvas dimensions based on viewport
+            canvas.height = viewport.height;
+            canvas.width = viewport.width;
+
+            // Render the PDF page on the canvas
+            const renderTask = page.render({
+              canvasContext: context,
+              viewport: viewport,
+            });
+            renderTask.promise.then(() => {
+              container.classList.add("home-ts-card-link"); // Add class to the container
+            });
+          });
+        }
+      })
+      .catch((error) => {
+        console.error("Error loading PDF:", error);
+      });
   }
 }
 
 // Event listener for card click redirect to pdf
-function addCardClickListener(cardElement, targetPage, pdfUrl) {
+function addCardClickListener(cardElement, targetPage, tsPdfUrl) {
   cardElement.addEventListener("click", function (event) {
     event.preventDefault();
     showContent(targetPage);
-    embedPDF(pdfUrl, targetPage);
-    targetPage.classList.add("home-ts-card-link");
+    embedPDF(tsPdfUrl, targetPage);
   });
 }
 
@@ -117,5 +144,5 @@ var homeTsCardPage = document.getElementById("home-ts-card-link");
 // addNavigationListener(tsCardHome, homeTsCardPage);
 
 // calling home card next page with pdf
-var tsPdfUrl = "./newsPageWebp/pidikili 07-5-2024R[3].pdf"; // Replace with the URL of your PDF file
+var tsPdfUrl = "./newsPageWebp/pidikili_pdf03-5-2024[1].pdf"; // Replace with the URL of your PDF file
 addCardClickListener(tsCardHome, homeTsCardPage, tsPdfUrl);
