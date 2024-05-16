@@ -141,7 +141,8 @@ a {
 .nizamabad-page-container,
 .adilabad-page-container,
 .karimnagar-page-container,
-.warangal-page-container {
+.warangal-page-container ,
+.home-card-pfd-link /*home card pdf target class*/ {
   display: none;
 }
 
@@ -155,21 +156,19 @@ a {
 }
 
 /* demo */
-.demo {
+/* .home-card-pfd-link {
   display: none;
-}
-/* .home-ts-card-link {
-  padding: 10px;
-  border: 2px solid rgb(255, 0, 0);
-  box-sizing: border-box; */
-/* } */
+} */
+
 .home-ts-card-link {
-  width: 100%; /* Set container width to fill its parent */
+  width: auto; /* Set container width to fill its parent */
   height: 100%; /* Set container height to fill its parent */
   border: 2px solid red;
   position: relative; /* Set container position to relative */
-  overflow: scroll; /* Enable scrolling if PDF is larger than container */
+  overflow: scroll; /* scroll Enable scrolling if PDF is larger than container*/
+  margin: 10px;
 }
+
 /* CSS for canvas to modify PDF size */
 canvas {
   /* Set maximum width to 100% */

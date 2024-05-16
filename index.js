@@ -87,14 +87,14 @@ addNavigationListener(WarangalNavElement, WarangalPage);
 //   // This will run after the DOM is fully loaded
 // });
 
-// demo
-// Function to dynamically embed PDF into home-ts-card-link container
+// Function to dynamically embed PDF into home-card-link container
 function embedPDF(pdfUrl, container) {
   if (container) {
-    // Asynchronously download PDF as an ArrayBuffer
-    const loadingTask = pdfjsLib.getDocument(pdfUrl);
-    loadingTask.promise
-      .then((pdf) => {
+    const loadPdf = async () => {
+      try {
+        // Asynchronously download PDF as an ArrayBuffer
+        const pdf = await pdfjsLib.getDocument(pdfUrl).promise;
+
         // Loop through each page of the PDF
         for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++) {
           // Create a canvas element for each page
@@ -102,47 +102,104 @@ function embedPDF(pdfUrl, container) {
           container.appendChild(canvas);
 
           // Get the page
-          pdf.getPage(pageNumber).then((page) => {
-            // Get the viewport of the page
-            const viewport = page.getViewport({ scale: 1 });
-            const context = canvas.getContext("2d");
+          const page = await pdf.getPage(pageNumber);
 
-            // Set canvas dimensions based on viewport
-            canvas.height = viewport.height;
-            canvas.width = viewport.width;
+          // Get the viewport of the page
+          const viewport = page.getViewport({ scale: 1 });
+          const context = canvas.getContext("2d");
 
-            // Render the PDF page on the canvas
-            const renderTask = page.render({
-              canvasContext: context,
-              viewport: viewport,
-            });
-            renderTask.promise.then(() => {
-              container.classList.add("home-ts-card-link"); // Add class to the container
-            });
-          });
+          // Set canvas dimensions based on viewport
+          canvas.height = viewport.height;
+          canvas.width = viewport.width;
+
+          // Render the PDF page on the canvas
+          await page.render({
+            canvasContext: context,
+            viewport: viewport,
+          }).promise;
+
+          container.classList.add("home-ts-card-link"); // Add class to the container
         }
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error("Error loading PDF:", error);
-      });
+      }
+    };
+
+    loadPdf();
   }
 }
 
 // Event listener for card click redirect to pdf
 function addCardClickListener(cardElement, targetPage, tsPdfUrl) {
+  var cardElement = document.getElementById(cardElement);
+  var targetPage = document.getElementById(targetPage);
+
+  if (!cardElement) {
+    console.error("Card element not found with id:", cardElement);
+    return;
+  }
+
+  if (!targetPage) {
+    console.error("Target page not found with id:", targetPage);
+    return;
+  }
   cardElement.addEventListener("click", function (event) {
-    event.preventDefault();
+    event.preventDefault(); // Assuming showContent accepts an ID
     showContent(targetPage);
+    targetPage.innerHTML = ""; // Clear target element
     embedPDF(tsPdfUrl, targetPage);
   });
 }
 
-// Example usage:
-// creating home card id elements
-var tsCardHome = document.getElementById("ts-card-home");
-var homeTsCardPage = document.getElementById("home-ts-card-link");
-// addNavigationListener(tsCardHome, homeTsCardPage);
+// // Example usage:
+// // creating home card id elements
+// by deleting this line cards pfd is not working
+var homeTsCardPage = document.getElementById("home-card-link");
 
 // calling home card next page with pdf
-var tsPdfUrl = "./newsPageWebp/pidikili_pdf03-5-2024[1].pdf"; // Replace with the URL of your PDF file
-addCardClickListener(tsCardHome, homeTsCardPage, tsPdfUrl);
+
+addCardClickListener(
+  "ts-card-home",
+  "home-card-link",
+  "./newsPageWebp/pidikili_pdf03-5-2024[1].pdf"
+);
+addCardClickListener(
+  "ap-card-home",
+  "home-card-link",
+  "./newsPageWebp/pidikili_pdf03-5-2024[1].pdf"
+);
+addCardClickListener(
+  "mahabubnagar-card-home",
+  "home-card-link",
+  "./newsPageWebp/pidikili_pdf03-5-2024[1].pdf"
+);
+
+addCardClickListener(
+  "medak-card-home",
+  "home-card-link",
+  "./newsPageWebp/pidikili_pdf03-5-2024[1].pdf"
+);
+
+addCardClickListener(
+  "nalgonda-card-home",
+  "home-card-link",
+  "./newsPageWebp/pidikili_pdf03-5-2024[1].pdf"
+);
+
+addCardClickListener(
+  "nizamabad-card-home",
+  "home-card-link",
+  "./newsPageWebp/pidikili_pdf03-5-2024[1].pdf"
+);
+
+addCardClickListener(
+  "adilabad-card-home",
+  "home-card-link",
+  "./newsPageWebp/pidikili_pdf03-5-2024[1].pdf"
+);
+
+addCardClickListener(
+  "karimnagar-card-home",
+  "home-card-link",
+  "./newsPageWebp/pidikili_pdf03-5-2024[1].pdf"
+);

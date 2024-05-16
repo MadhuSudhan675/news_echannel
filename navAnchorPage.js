@@ -290,7 +290,7 @@ var karimnagarCardData = [
 var warangalCardData = [
   {
     heading: "May 15 2024",
-    image: "./newsPageWebp/sample-news-pape_page-0012-min.webp",
+    image: "./newsPageWebp/sample-news-pape_page-0001-min.webp",
   },
   {
     heading: "May 14 2024",
@@ -298,11 +298,11 @@ var warangalCardData = [
   },
   {
     heading: "May 13 2024",
-    image: "./newsPageWebp/sample-news-pape_page-0012-min.webp",
+    image: "./newsPageWebp/sample-news-pape_page-0005-min.webp",
   },
   {
     heading: "May 12 2024",
-    image: "./newsPageWebp/sample-news-pape_page-0012-min.webp",
+    image: "./newsPageWebp/sample-news-pape_page-0011-min.webp",
   },
   {
     heading: "May 11 2024",
@@ -310,7 +310,7 @@ var warangalCardData = [
   },
   {
     heading: "May 10 2024",
-    image: "./newsPageWebp/sample-news-pape_page-0012-min.webp",
+    image: "./newsPageWebp/sample-news-pape_page-0006-min.webp",
   },
   {
     heading: "May 09 2024",
@@ -318,7 +318,7 @@ var warangalCardData = [
   },
   {
     heading: "May 08 2024",
-    image: "./newsPageWebp/sample-news-pape_page-0012-min.webp",
+    image: "./newsPageWebp/sample-news-pape_page-0007-min.webp",
   },
   // Add more card data as needed
 ];
@@ -346,6 +346,7 @@ function createCard(heading, image) {
 // Function to add cards to the container
 function addCardsToContainer(container, data) {
   data.forEach(function (item) {
+    console.log(item);
     var card = createCard(item.heading, item.image);
     container.appendChild(card);
   });
