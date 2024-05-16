@@ -292,3 +292,69 @@ var pdfUrl = './newsPageWebp/pidikili 07-5-2024R[2].pdf'; // Replace with the UR
 // Add click listener to the card element
 addCardClickListener(tsCardHome, homeTsCardPage, pdfUrl);
 
+
+
+navAnchorPage.js 
+old one new one is card id's added and pdf also added here the addCardFuncion is declared globally it means it was written in html calling in it so it was working 
+*)// // Function to create a card element
+// function createCard(heading, image) {
+//   var cardDiv = document.createElement("div");
+//   cardDiv.classList.add("card");
+
+//   var headingElem = document.createElement("h1");
+//   headingElem.classList.add("card-heading");
+//   headingElem.textContent = heading;
+
+//   var imgElem = document.createElement("img");
+//   imgElem.classList.add("card-img");
+//   imgElem.src = image;
+//   imgElem.alt = "";
+
+//   cardDiv.appendChild(headingElem);
+//   cardDiv.appendChild(imgElem);
+
+//   return cardDiv;
+// }
+
+// // Function to add cards to the container
+// function addCardsToContainer(container, data) {
+//   data.forEach(function (item) {
+//     console.log(item);
+//     var card = createCard(item.heading, item.image);
+//     container.appendChild(card);
+//   });
+// }
+
+// // Get the container element
+// var tsCardContainer = document.getElementById("nav-ts-card-container");
+// var apCardContainer = document.getElementById("nav-ap-card-container");
+// var mahabubnagarCardContainer = document.getElementById(
+//   "nav-mahabubnagar-card-container"
+// );
+// var medakCardContainer = document.getElementById("nav-medak-card-container");
+// var nalgondaCardContainer = document.getElementById(
+//   "nav-nalgonda-card-container"
+// );
+// var nizamabadCardContainer = document.getElementById(
+//   "nav-nizamabad-card-container"
+// );
+// var adilabadCardContainer = document.getElementById(
+//   "nav-adilabad-card-container"
+// );
+// var karimnagarCardContainer = document.getElementById(
+//   "nav-karimnagar-card-container"
+// );
+// var warangalCardContainer = document.getElementById(
+//   "nav-warangal-card-container"
+// );
+
+// // Add cards to the container
+// addCardsToContainer(tsCardContainer, tsCardData);
+// addCardsToContainer(apCardContainer, apCardData);
+// addCardsToContainer(mahabubnagarCardContainer, mahabubnagarCardData);
+// addCardsToContainer(medakCardContainer, medakCardData);
+// addCardsToContainer(nalgondaCardContainer, nalgondaCardData);
+// addCardsToContainer(nizamabadCardContainer, nizamabadCardData);
+// addCardsToContainer(adilabadCardContainer, adilabadCardData);
+// addCardsToContainer(karimnagarCardContainer, karimnagarCardData);
+// addCardsToContainer(warangalCardContainer, warangalCardData);
